@@ -10,7 +10,7 @@ function FlightBooking() {
 
   const submit = () => {
     if (!name || !email || !phone) {
-      alert("Fill all fields");
+      alert("Please fill all fields");
       return;
     }
 
@@ -21,18 +21,40 @@ function FlightBooking() {
 
   return (
     <div>
-      <h2>Booking</h2>
+      <h2>Flight Booking</h2>
 
-      <input type="text" placeholder="Name" onChange={(e)=>setName(e.target.value)} />
+      {/* IMPORTANT: type="text" must be there */}
+      <input
+        type="text"
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+
       <br /><br />
 
-      <input type="text" placeholder="Email" onChange={(e)=>setEmail(e.target.value)} />
+      <input
+        type="text"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+
       <br /><br />
 
-      <input type="text" placeholder="Phone" onChange={(e)=>setPhone(e.target.value)} />
+      <input
+        type="text"
+        placeholder="Phone"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+      />
+
       <br /><br />
 
-      <button onClick={submit}>Confirm</button>
+      {/* IMPORTANT BUTTON */}
+      <button onClick={submit}>
+        Confirm Booking
+      </button>
     </div>
   );
 }
