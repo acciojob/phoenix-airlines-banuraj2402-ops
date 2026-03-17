@@ -1,26 +1,31 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
 
-import FlightSearch from "./FlightSearch";
-import FlightBooking from "./FlightBooking";
-import Confirmation from "./Confirmation";
+function App() {
+  const [message, setMessage] = useState("");
 
-const App = () => {
   return (
     <div>
-      {/* Do not remove this div */}
+      <h1>Flight Booking App</h1>
 
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<FlightSearch />} />
-          <Route path="/flight-search" element={<FlightSearch />} />
-          <Route path="/flight-booking" element={<FlightBooking />} />
-          <Route path="/confirmation" element={<Confirmation />} />
-        </Routes>
-      </BrowserRouter>
+      <select>
+        <option value="">Select Source</option>
+        <option value="Delhi">Delhi</option>
+      </select>
 
+      <select>
+        <option value="">Select Destination</option>
+        <option value="Mumbai">Mumbai</option>
+      </select>
+
+      <input type="date" />
+
+      <button onClick={() => setMessage("No Flights Available")}>
+        Search Flights
+      </button>
+
+      <p>{message}</p>
     </div>
   );
-};
+}
 
 export default App;
