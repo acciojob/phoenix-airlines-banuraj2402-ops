@@ -1,13 +1,19 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import FlightSearch from "./components/FlightSearch";
+import FlightBooking from "./components/FlightBooking";
+import Confirmation from "./components/Confirmation";
 
-import React from "react";
-import './../styles/App.css';
-
-const App = () => {
+function App() {
   return (
-    <div>
-        {/* Do not remove the main div */}
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<FlightSearch />} />
+        <Route path="/flight-search" element={<FlightSearch />} />
+        <Route path="/flight-booking" element={<FlightBooking />} />
+        <Route path="/confirmation" element={<Confirmation />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
