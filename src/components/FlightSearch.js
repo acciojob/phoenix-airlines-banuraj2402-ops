@@ -8,21 +8,53 @@ function FlightSearch() {
 
   const navigate = useNavigate();
 
+  const handleSearch = () => {
+    if (!from || !to || !date) {
+      alert("Please fill all fields");
+      return;
+    }
+  };
+
   return (
     <div>
       <h2>Flight Search</h2>
 
-      <input type="text" placeholder="From" onChange={(e)=>setFrom(e.target.value)} />
+      <input
+        type="text"
+        placeholder="From"
+        value={from}
+        onChange={(e) => setFrom(e.target.value)}
+      />
+
       <br /><br />
 
-      <input type="text" placeholder="To" onChange={(e)=>setTo(e.target.value)} />
+      <input
+        type="text"
+        placeholder="To"
+        value={to}
+        onChange={(e) => setTo(e.target.value)}
+      />
+
       <br /><br />
 
-      <input type="date" onChange={(e)=>setDate(e.target.value)} />
+      <input
+        type="date"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+      />
+
       <br /><br />
 
-      {/* IMPORTANT BUTTON */}
-      <button className="book-flight" onClick={()=>navigate("/flight-booking")}>
+      {/* OPTIONAL SEARCH BUTTON */}
+      <button onClick={handleSearch}>Search</button>
+
+      <br /><br />
+
+      {/* VERY IMPORTANT FOR CYPRESS */}
+      <button
+        className="book-flight"
+        onClick={() => navigate("/flight-booking")}
+      >
         Book Flight
       </button>
     </div>
