@@ -13,6 +13,8 @@ function FlightSearch() {
       alert("Please fill all fields");
       return;
     }
+
+    alert("Flights Available");
   };
 
   return (
@@ -26,7 +28,8 @@ function FlightSearch() {
         onChange={(e) => setFrom(e.target.value)}
       />
 
-      <br /><br />
+      <br />
+      <br />
 
       <input
         type="text"
@@ -35,7 +38,8 @@ function FlightSearch() {
         onChange={(e) => setTo(e.target.value)}
       />
 
-      <br /><br />
+      <br />
+      <br />
 
       <input
         type="date"
@@ -43,14 +47,14 @@ function FlightSearch() {
         onChange={(e) => setDate(e.target.value)}
       />
 
-      <br /><br />
+      <br />
+      <br />
 
-      {/* OPTIONAL SEARCH BUTTON */}
       <button onClick={handleSearch}>Search</button>
 
-      <br /><br />
+      <br />
+      <br />
 
-      {/* VERY IMPORTANT FOR CYPRESS */}
       <button
         className="book-flight"
         onClick={() => navigate("/flight-booking")}

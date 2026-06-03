@@ -15,7 +15,7 @@ function FlightBooking() {
     }
 
     navigate("/confirmation", {
-      state: { name, email, phone }
+      state: { name, email, phone },
     });
   };
 
@@ -23,7 +23,6 @@ function FlightBooking() {
     <div>
       <h2>Flight Booking</h2>
 
-      {/* IMPORTANT: type="text" must be there */}
       <input
         type="text"
         placeholder="Name"
@@ -31,7 +30,8 @@ function FlightBooking() {
         onChange={(e) => setName(e.target.value)}
       />
 
-      <br /><br />
+      <br />
+      <br />
 
       <input
         type="text"
@@ -40,7 +40,8 @@ function FlightBooking() {
         onChange={(e) => setEmail(e.target.value)}
       />
 
-      <br /><br />
+      <br />
+      <br />
 
       <input
         type="text"
@@ -49,12 +50,10 @@ function FlightBooking() {
         onChange={(e) => setPhone(e.target.value)}
       />
 
-      <br /><br />
+      <br />
+      <br />
 
-      {/* IMPORTANT BUTTON */}
-      <button onClick={submit}>
-        Confirm Booking
-      </button>
+      <button onClick={submit}>Confirm Booking</button>
     </div>
   );
 }

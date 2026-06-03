@@ -15,9 +15,7 @@ function Confirmation() {
       <p>Email: {data?.email}</p>
       <p>Phone: {data?.phone}</p>
 
-      <button onClick={()=>navigate("/")}>
-        Go Home
-      </button>
+      <button onClick={() => navigate("/")}>Go Home</button>
     </div>
   );
 }
