@@ -9,13 +9,17 @@ function FlightBooking() {
   const navigate = useNavigate();
 
   const submit = () => {
-    if (!name || !email || !phone) {
+    if (
+      name.trim() === "" ||
+      email.trim() === "" ||
+      phone.trim() === ""
+    ) {
       alert("Please fill all fields");
       return;
     }
 
     navigate("/confirmation", {
-      state: { name, email, phone },
+      state: { name, email, phone }
     });
   };
 

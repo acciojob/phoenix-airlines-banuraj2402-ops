@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function FlightSearch() {
+  const [tripType, setTripType] = useState("oneway");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [date, setDate] = useState("");
@@ -14,16 +15,39 @@ function FlightSearch() {
       return;
     }
 
-    alert("Flights Available");
+    navigate("/flight-booking");
   };
 
   return (
     <div>
       <h2>Flight Search</h2>
 
+      <label>
+        <input
+          type="radio"
+          value="oneway"
+          checked={tripType === "oneway"}
+          onChange={(e) => setTripType(e.target.value)}
+        />
+        One Way
+      </label>
+
+      <label style={{ marginLeft: "10px" }}>
+        <input
+          type="radio"
+          value="roundtrip"
+          checked={tripType === "roundtrip"}
+          onChange={(e) => setTripType(e.target.value)}
+        />
+        Round Trip
+      </label>
+
+      <br />
+      <br />
+
       <input
         type="text"
-        placeholder="From"
+        placeholder="Source City"
         value={from}
         onChange={(e) => setFrom(e.target.value)}
       />
@@ -33,7 +57,7 @@ function FlightSearch() {
 
       <input
         type="text"
-        placeholder="To"
+        placeholder="Destination City"
         value={to}
         onChange={(e) => setTo(e.target.value)}
       />
@@ -50,16 +74,8 @@ function FlightSearch() {
       <br />
       <br />
 
-      <button onClick={handleSearch}>Search</button>
-
-      <br />
-      <br />
-
-      <button
-        className="book-flight"
-        onClick={() => navigate("/flight-booking")}
-      >
-        Book Flight
+      <button className="book-flight" onClick={handleSearch}>
+        Search Flights
       </button>
     </div>
   );
