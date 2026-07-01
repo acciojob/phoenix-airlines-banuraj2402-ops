@@ -23,6 +23,22 @@ function FlightSearch() {
     to: "Mumbai",
     time: "2:00 PM",
     price: 5200
+  },
+  {
+    id: 3,
+    airline: "Air India",
+    from: "Mumbai",
+    to: "Bengaluru",
+    time: "4:00 AM",
+    price: 3600
+  },
+  {
+    id: 4,
+    airline: "IndiGo",
+    from: "Delhi",
+    to: "Chennai",
+    time: "8:00 PM",
+    price: 4800
   }
 ];
 
@@ -31,13 +47,14 @@ const [results, setResults] = useState([]);
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    if (!from || !to || !date) {
-      alert("Please fill all fields");
-      return;
-    }
+  const filteredFlights = flights.filter(
+    (flight) =>
+      flight.from.toLowerCase() === from.toLowerCase() &&
+      flight.to.toLowerCase() === to.toLowerCase()
+  );
 
-    setResults(flights);
-  };
+  setResults(filteredFlights);
+};
 
   return (
     <div>
