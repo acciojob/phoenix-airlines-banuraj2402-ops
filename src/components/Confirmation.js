@@ -9,17 +9,14 @@ function Confirmation() {
 
   return (
     <div>
-      <h2>Booking Confirmed</h2>
+      <h2>Thank you for the Booking.</h2>
 
-      <p>First Name: {data.firstName}</p>
-      <p>Last Name: {data.lastName}</p>
-      <p>Email: {data.email}</p>
-      <p>Mobile Number: {data.phone}</p>
+      <p>Thank you for the Booking. Click the below button to return to home page</p>
 
       <br />
 
       <button onClick={() => navigate("/")}>
-        Back To Home
+        BACK TO HOME
       </button>
     </div>
   );

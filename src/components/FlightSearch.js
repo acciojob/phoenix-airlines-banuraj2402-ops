@@ -41,7 +41,7 @@ const [results, setResults] = useState([]);
 
   return (
     <div>
-      <h2>Flight Search</h2>
+      <h1>Flight Search App</h1>
 
       <label>
         <input
@@ -66,28 +66,22 @@ const [results, setResults] = useState([]);
       <br />
       <br />
 
-      <select
+      <input
+        type="text"
+        placeholder="Source City"
         value={from}
         onChange={(e) => setFrom(e.target.value)}
-      >
-        <option value="">Select Source</option>
-        <option value="Chennai">Chennai</option>
-        <option value="Delhi">Delhi</option>
-        <option value="Mumbai">Mumbai</option>
-      </select>
+      />
 
       <br />
       <br />
 
-      <select
+      <input
+        type="text"
+        placeholder="Destination City"
         value={to}
         onChange={(e) => setTo(e.target.value)}
-      >
-        <option value="">Select Destination</option>
-        <option value="Delhi">Delhi</option>
-        <option value="Mumbai">Mumbai</option>
-        <option value="Chennai">Chennai</option>
-      </select>
+      />
 
       <br />
       <br />
@@ -122,7 +116,7 @@ const [results, setResults] = useState([]);
             className="book-flight"
             onClick={() =>
               navigate("/flight-booking", {
-                
+
                 state: { flight }
               })
             }

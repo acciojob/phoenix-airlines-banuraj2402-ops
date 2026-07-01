@@ -50,7 +50,7 @@ function FlightBooking() {
       <br />
 
       <input
-        type="email"
+        type="text"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -60,7 +60,7 @@ function FlightBooking() {
       <br />
 
       <input
-        type="tel"
+        type="text"
         placeholder="Mobile Number"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
