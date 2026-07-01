@@ -47,11 +47,20 @@ const [results, setResults] = useState([]);
   const navigate = useNavigate();
 
   const handleSearch = () => {
+  if (!from || !to || !date) {
+    alert("Please fill all fields");
+    return;
+  }
+
   const filteredFlights = flights.filter(
     (flight) =>
       flight.from.toLowerCase() === from.toLowerCase() &&
       flight.to.toLowerCase() === to.toLowerCase()
   );
+
+  if (filteredFlights.length === 0) {
+    alert("No flights available");
+  }
 
   setResults(filteredFlights);
 };
@@ -137,16 +146,13 @@ const [results, setResults] = useState([]);
                 state: { flight }
               })
             }
-        >
-          Book Flight - ₹{flight.price}
-        </button>
-
-          <br />
-          <br />
+          >
+            Book Flight - ₹{flight.price}
+          </button>
         </li>
-        ))}
-      </ul>
-    </div>
+      ))}
+    </ul>
+  </div>
   );
 }
 

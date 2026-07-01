@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function FlightBooking() {
   const [firstName, setFirstName] = useState("");
@@ -8,6 +8,8 @@ function FlightBooking() {
   const [phone, setPhone] = useState("");
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const flight = location.state?.flight;
 
   const submit = () => {
     if (
