@@ -6,24 +6,26 @@ function FlightBooking() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const navigate = useNavigate();
   const location = useLocation();
   const flight = location.state?.flight;
 
   const submit = () => {
-    if (
-      firstName.trim() === "" ||
-      lastName.trim() === "" ||
-      email.trim() === "" ||
-      phone.trim() === ""
-    ) {
-      alert("Please fill all fields");
+    const newErrors = [];
+    if (!firstName.trim()) newErrors.push("First name is required");
+    if (!lastName.trim())  newErrors.push("Last name is required");
+    if (!email.trim())     newErrors.push("Email is required");
+    if (!phone.trim())     newErrors.push("Mobile number is required");
+
+    if (newErrors.length > 0) {
+      setErrors(newErrors);
       return;
     }
 
     navigate("/confirmation", {
-      state: { firstName,lastName, email, phone }
+      state: { firstName, lastName, email, phone, flight }
     });
   };
 
@@ -37,19 +39,15 @@ function FlightBooking() {
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
       />
+      <br /><br />
 
-    <br />
-    <br />
-
-    <input
-      type="text"
-      placeholder="Last Name"
-      value={lastName}
-      onChange={(e) => setLastName(e.target.value)}
-    />
-
-      <br />
-      <br />
+      <input
+        type="text"
+        placeholder="Last Name"
+        value={lastName}
+        onChange={(e) => setLastName(e.target.value)}
+      />
+      <br /><br />
 
       <input
         type="text"
@@ -57,9 +55,7 @@ function FlightBooking() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-
-      <br />
-      <br />
+      <br /><br />
 
       <input
         type="text"
@@ -67,11 +63,15 @@ function FlightBooking() {
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
       />
-
-      <br />
-      <br />
+      <br /><br />
 
       <button onClick={submit}>Confirm Booking</button>
+
+      <ul>
+        {errors.map((err, i) => (
+          <li key={i} style={{ color: "red" }}>{err}</li>
+        ))}
+      </ul>
     </div>
   );
 }
