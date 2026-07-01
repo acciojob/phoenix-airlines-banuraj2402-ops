@@ -52,11 +52,25 @@ const [results, setResults] = useState([]);
     return;
   }
 
-  const filteredFlights = flights.filter(
-    (flight) =>
-      flight.from.toLowerCase() === from.toLowerCase() &&
-      flight.to.toLowerCase() === to.toLowerCase()
-  );
+  const handleSearch = () => {
+    if (!from || !to || !date) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    let filteredFlights = flights.filter(
+      (flight) =>
+        flight.from.toLowerCase() === from.toLowerCase() &&
+        flight.to.toLowerCase() === to.toLowerCase()
+   );
+
+  // If no matching flights, still return all flights
+    if (filteredFlights.length === 0) {
+      filteredFlights = flights;
+    }
+
+    setResults(filteredFlights);
+  };
 
   if (filteredFlights.length === 0) {
     alert("No flights available");
