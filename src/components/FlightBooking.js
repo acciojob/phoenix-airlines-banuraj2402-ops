@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function FlightBooking() {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
@@ -10,7 +11,8 @@ function FlightBooking() {
 
   const submit = () => {
     if (
-      name.trim() === "" ||
+      firstName.trim() === "" ||
+      lastName.trim() === "" ||
       email.trim() === "" ||
       phone.trim() === ""
     ) {
@@ -19,7 +21,7 @@ function FlightBooking() {
     }
 
     navigate("/confirmation", {
-      state: { name, email, phone }
+      state: { firstName,lastName, email, phone }
     });
   };
 
@@ -29,16 +31,26 @@ function FlightBooking() {
 
       <input
         type="text"
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        placeholder="First Name"
+        value={firstName}
+        onChange={(e) => setFirstName(e.target.value)}
       />
+
+    <br />
+    <br />
+
+    <input
+      type="text"
+      placeholder="Last Name"
+      value={lastName}
+      onChange={(e) => setLastName(e.target.value)}
+    />
 
       <br />
       <br />
 
       <input
-        type="text"
+        type="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -48,8 +60,8 @@ function FlightBooking() {
       <br />
 
       <input
-        type="text"
-        placeholder="Phone"
+        type="tel"
+        placeholder="Mobile Number"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
       />

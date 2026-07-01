@@ -11,12 +11,15 @@ function Confirmation() {
     <div>
       <h2>Booking Confirmed</h2>
 
-      <p>Name: {data.name}</p>
+      <p>First Name: {data.firstName}</p>
+      <p>Last Name: {data.lastName}</p>
       <p>Email: {data.email}</p>
-      <p>Phone: {data.phone}</p>
+      <p>Mobile Number: {data.phone}</p>
+
+      <br />
 
       <button onClick={() => navigate("/")}>
-        Home
+        Back To Home
       </button>
     </div>
   );
