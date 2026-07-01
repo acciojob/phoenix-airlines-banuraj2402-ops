@@ -1,10 +1,3 @@
-Great progress! The error changed — this tells us a lot:
-
-Before: Expected to find element: 'li' → app wasn't rendering at all (syntax was broken) Now: Expected to find element: 'input[type='text']' → app renders now, but the tests want text inputs, not <select> dropdowns.
-
-My previous fix used <select> — that was wrong. The tests specifically look for input[type='text']. Let me fix that.
-
-✅ Corrected src/FlightSearch.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -68,7 +61,6 @@ function FlightSearch() {
 
       <br /><br />
 
-      {/* TEXT INPUTS — tests look for input[type='text'] */}
       <input
         type="text"
         placeholder="Source City"
