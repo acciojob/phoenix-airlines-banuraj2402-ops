@@ -1,3 +1,10 @@
+Great progress! The error changed — this tells us a lot:
+
+Before: Expected to find element: 'li' → app wasn't rendering at all (syntax was broken) Now: Expected to find element: 'input[type='text']' → app renders now, but the tests want text inputs, not <select> dropdowns.
+
+My previous fix used <select> — that was wrong. The tests specifically look for input[type='text']. Let me fix that.
+
+✅ Corrected src/FlightSearch.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -61,23 +68,22 @@ function FlightSearch() {
 
       <br /><br />
 
-      <select value={from} onChange={(e) => setFrom(e.target.value)}>
-        <option value="">Select Source City</option>
-        <option value="Chennai">Chennai</option>
-        <option value="Delhi">Delhi</option>
-        <option value="Mumbai">Mumbai</option>
-        <option value="Bengaluru">Bengaluru</option>
-      </select>
+      {/* TEXT INPUTS — tests look for input[type='text'] */}
+      <input
+        type="text"
+        placeholder="Source City"
+        value={from}
+        onChange={(e) => setFrom(e.target.value)}
+      />
 
       <br /><br />
 
-      <select value={to} onChange={(e) => setTo(e.target.value)}>
-        <option value="">Select Destination City</option>
-        <option value="Chennai">Chennai</option>
-        <option value="Delhi">Delhi</option>
-        <option value="Mumbai">Mumbai</option>
-        <option value="Bengaluru">Bengaluru</option>
-      </select>
+      <input
+        type="text"
+        placeholder="Destination City"
+        value={to}
+        onChange={(e) => setTo(e.target.value)}
+      />
 
       <br /><br />
 
@@ -94,7 +100,6 @@ function FlightSearch() {
             type="date"
             value={returnDate}
             onChange={(e) => setReturnDate(e.target.value)}
-            placeholder="Return Date"
           />
         </>
       )}
