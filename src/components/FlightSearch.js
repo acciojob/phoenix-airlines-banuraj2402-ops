@@ -43,7 +43,7 @@ function FlightSearch() {
 
   return (
     <div>
-      <h1>Flight Booking App</h1>
+      <h1>Welcome to Flight Booking App</h1>
 
       <label>
         <input
@@ -149,7 +149,7 @@ function FlightSearch() {
             <p>{flight.from} → {flight.to}</p>
             <p>{flight.time}</p>
             <button
-              className="book_flight"
+              className="book-flight"
               onClick={() =>
                 navigate("/flight-booking", { state: { flight } })
               }
