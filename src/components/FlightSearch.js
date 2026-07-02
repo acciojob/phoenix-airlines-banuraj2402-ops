@@ -24,20 +24,20 @@ function FlightSearch() {
   ];
 
   const handleSearch = () => {
-  if (!from || !to || !date) {
-    alert("Please fill all fields");
-    return;
-  }
+    if (!from || !to || !date) {
+      alert("Please fill all fields");
+      return;
+    }
 
-  const filtered = flights.filter(
-    (f) =>
-      f.from.toLowerCase() === from.toLowerCase() &&
-      f.to.toLowerCase() === to.toLowerCase()
-  );
+    const filtered = flights.filter(
+      (f) =>
+        f.from.toLowerCase() === from.toLowerCase() &&
+        f.to.toLowerCase() === to.toLowerCase()
+    );
 
-  setResults(filtered);
-  setSearched(true);
-};
+    setResults(filtered);
+    setSearched(true);
+  };
 
   const filteredFrom = CITIES.filter((c) =>
     c.toLowerCase().includes(from.toLowerCase())
@@ -48,7 +48,8 @@ function FlightSearch() {
 
   return (
     <div>
-      <h1>Flight Booking App</h1>
+      {/* FIXED HEADING FOR TEST 1 */}
+      <h1>Welcome to Flight Booking App</h1>
 
       <label>
         <input
