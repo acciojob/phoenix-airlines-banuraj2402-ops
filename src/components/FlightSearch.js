@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const CITIES = ["Chennai", "New Delhi", "Mumbai", "Bengaluru", "Kolkata"];
+const CITIES = ["Chennai", "Delhi", "Mumbai", "Bengaluru", "Kolkata"];
 
 function FlightSearch() {
   const [tripType, setTripType] = useState("oneway");
@@ -15,10 +15,10 @@ function FlightSearch() {
   const navigate = useNavigate();
 
   const flights = [
-    { id: 1, airline: "IndiGo",    from: "Chennai", to: "New Delhi", time: "10:30 AM", price: 4500 },
+    { id: 1, airline: "IndiGo",    from: "Chennai", to: "Delhi", time: "10:30 AM", price: 4500 },
     { id: 2, airline: "Air India", from: "Chennai", to: "Mumbai",    time: "2:00 PM",  price: 5200 },
     { id: 3, airline: "Air India", from: "Mumbai",  to: "Bengaluru", time: "4:00 AM",  price: 3600 },
-    { id: 4, airline: "IndiGo",    from: "New Delhi", to: "Chennai", time: "8:00 PM",  price: 4800 },
+    { id: 4, airline: "IndiGo",    from: "Delhi", to: "Chennai", time: "8:00 PM",  price: 4800 },
     { id: 5, airline: "SpiceJet",  from: "Chennai", to: "Kolkata",   time: "11:00 AM", price: 5000 }
   ];
 
@@ -43,7 +43,7 @@ function FlightSearch() {
 
   return (
     <div>
-      <h1>Welcome to Flight Booking App</h1>
+      <h1>Flight Booking App</h1>
 
       <label>
         <input
@@ -128,7 +128,10 @@ function FlightSearch() {
 
       <br /><br />
 
-      <button onClick={handleSearch}>
+      <button
+        disabled={!from || !to || !date}
+        onClick={handleSearch}
+      >
         Search Flights
       </button>
 
@@ -146,7 +149,7 @@ function FlightSearch() {
             <p>{flight.from} → {flight.to}</p>
             <p>{flight.time}</p>
             <button
-              className="book-flight"
+              className="book_flight"
               onClick={() =>
                 navigate("/flight-booking", { state: { flight } })
               }
