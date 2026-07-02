@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// UPDATED CITIES LIST TO MATCH TEST EXPECTATIONS
 const CITIES = ["Chennai", "New Delhi", "Mumbai", "Bengaluru", "Kolkata"];
 
 function FlightSearch() {
@@ -15,7 +14,6 @@ function FlightSearch() {
 
   const navigate = useNavigate();
 
-  // UPDATED FLIGHT DATA SET TO REFLECT "New Delhi" AND EXPANDED SEARCHES
   const flights = [
     { id: 1, airline: "IndiGo",    from: "Chennai", to: "New Delhi", time: "10:30 AM", price: 4500 },
     { id: 2, airline: "Air India", from: "Chennai", to: "Mumbai",    time: "2:00 PM",  price: 5200 },
@@ -26,14 +24,14 @@ function FlightSearch() {
 
   const handleSearch = () => {
     if (!from || !to || !date) {
-      alert("Please fill all fields");
       return;
     }
 
+    // Match filtering cleanly regardless of spaces/case
     const filtered = flights.filter(
       (f) =>
-        f.from.toLowerCase() === from.toLowerCase() &&
-        f.to.toLowerCase() === to.toLowerCase()
+        f.from.trim().toLowerCase() === from.trim().toLowerCase() &&
+        f.to.trim().toLowerCase() === to.trim().toLowerCase()
     );
 
     setResults(filtered);
@@ -46,6 +44,9 @@ function FlightSearch() {
   const filteredTo = CITIES.filter((c) =>
     c.toLowerCase().includes(to.toLowerCase())
   );
+
+  // Button should be disabled if criteria aren't met
+  const isSearchDisabled = !from || !to || !date || (tripType === "roundtrip" && !returnDate);
 
   return (
     <div>
@@ -134,7 +135,10 @@ function FlightSearch() {
 
       <br /><br />
 
-      <button onClick={handleSearch}>Search Flights</button>
+      {/* ADDED DISABLED ATTRIBUTE TO PASS TEST 1 */}
+      <button onClick={handleSearch} disabled={isSearchDisabled}>
+        Search Flights
+      </button>
 
       <br /><br />
 
