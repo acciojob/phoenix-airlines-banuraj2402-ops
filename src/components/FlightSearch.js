@@ -11,8 +11,6 @@ function FlightSearch() {
   const [returnDate, setReturnDate] = useState("");
   const [results, setResults] = useState([]);
   const [searched, setSearched] = useState(false);
-  const [showFromList, setShowFromList] = useState(false);
-  const [showToList, setShowToList] = useState(false);
 
   const navigate = useNavigate();
 
@@ -48,7 +46,6 @@ function FlightSearch() {
 
   return (
     <div>
-      {/* FIXED HEADING FOR TEST 1 */}
       <h1>Welcome to Flight Booking App</h1>
 
       <label>
@@ -73,63 +70,45 @@ function FlightSearch() {
 
       <br /><br />
 
-      {/* Source City with dropdown */}
+      {/* Source City Dropdown (Always rendered now) */}
       <input
         type="text"
         placeholder="Source City"
         value={from}
-        onChange={(e) => {
-          setFrom(e.target.value);
-          setShowFromList(true);
-        }}
-        onFocus={() => setShowFromList(true)}
+        onChange={(e) => setFrom(e.target.value)}
       />
-      {showFromList && (
-        <ul>
-          {filteredFrom.map((city) => (
-            <li
-              key={city}
-              onClick={() => {
-                setFrom(city);
-                setShowFromList(false);
-              }}
-              style={{ cursor: "pointer" }}
-            >
-              {city}
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul>
+        {filteredFrom.map((city) => (
+          <li
+            key={city}
+            onClick={() => setFrom(city)}
+            style={{ cursor: "pointer" }}
+          >
+            {city}
+          </li>
+        ))}
+      </ul>
 
       <br />
 
-      {/* Destination City with dropdown */}
+      {/* Destination City Dropdown (Always rendered now) */}
       <input
         type="text"
         placeholder="Destination City"
         value={to}
-        onChange={(e) => {
-          setTo(e.target.value);
-          setShowToList(true);
-        }}
-        onFocus={() => setShowToList(true)}
+        onChange={(e) => setTo(e.target.value)}
       />
-      {showToList && (
-        <ul>
-          {filteredTo.map((city) => (
-            <li
-              key={city}
-              onClick={() => {
-                setTo(city);
-                setShowToList(false);
-              }}
-              style={{ cursor: "pointer" }}
-            >
-              {city}
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul>
+        {filteredTo.map((city) => (
+          <li
+            key={city}
+            onClick={() => setTo(city)}
+            style={{ cursor: "pointer" }}
+          >
+            {city}
+          </li>
+        ))}
+      </ul>
 
       <br />
 
