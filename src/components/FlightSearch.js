@@ -40,8 +40,6 @@ function FlightSearch() {
     c.toLowerCase().includes(to.toLowerCase())
   );
 
-  // Simplified logic so Cypress can easily unlock the button when it interacts
-  const isSearchDisabled = !from.trim() || !to.trim();
 
   return (
     <div>
@@ -130,7 +128,7 @@ function FlightSearch() {
 
       <br /><br />
 
-      <button onClick={handleSearch} disabled={isSearchDisabled}>
+      <button onClick={handleSearch}>
         Search Flights
       </button>
 
