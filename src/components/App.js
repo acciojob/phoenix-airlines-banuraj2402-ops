@@ -9,6 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<FlightSearch />} />
+        <Route path="/flight-search" element={<FlightSearch />} />
         <Route path="/flight-booking" element={<FlightBooking />} />
         <Route path="/confirmation" element={<Confirmation />} />
       </Routes>

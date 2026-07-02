@@ -24,14 +24,20 @@ function FlightSearch() {
   ];
 
   const handleSearch = () => {
-    const filtered = flights.filter(
-      (f) =>
-        f.from.toLowerCase() === from.toLowerCase() &&
-        f.to.toLowerCase() === to.toLowerCase()
-    );
-    setResults(filtered);
-    setSearched(true);
-  };
+  if (!from || !to || !date) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  const filtered = flights.filter(
+    (f) =>
+      f.from.toLowerCase() === from.toLowerCase() &&
+      f.to.toLowerCase() === to.toLowerCase()
+  );
+
+  setResults(filtered);
+  setSearched(true);
+};
 
   const filteredFrom = CITIES.filter((c) =>
     c.toLowerCase().includes(from.toLowerCase())
