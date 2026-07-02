@@ -9,13 +9,12 @@ function Confirmation() {
 
   return (
     <div>
+      <h1>Flight Booking App</h1>
       <h2>Thank you for the Booking.</h2>
       <p>Thank you for the Booking. Click the below button to return to home page</p>
 
       {data.firstName && (
-        <p>
-          Name: {data.firstName} {data.lastName}
-        </p>
+        <p>Name: {data.firstName} {data.lastName}</p>
       )}
 
       <br />

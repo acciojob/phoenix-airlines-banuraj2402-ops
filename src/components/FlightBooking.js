@@ -32,7 +32,8 @@ function FlightBooking() {
 
   return (
     <div>
-      <h2>Flight Booking</h2>
+      <h1>Flight Booking App</h1>
+      <h2>Passenger Details</h2>
 
       <input
         type="text"

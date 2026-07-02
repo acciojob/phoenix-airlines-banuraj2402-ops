@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const CITIES = ["Chennai", "Delhi", "Mumbai", "Bengaluru"];
+
 function FlightSearch() {
   const [tripType, setTripType] = useState("oneway");
   const [from, setFrom] = useState("");
@@ -9,6 +11,8 @@ function FlightSearch() {
   const [returnDate, setReturnDate] = useState("");
   const [results, setResults] = useState([]);
   const [searched, setSearched] = useState(false);
+  const [showFromList, setShowFromList] = useState(false);
+  const [showToList, setShowToList] = useState(false);
 
   const navigate = useNavigate();
 
@@ -20,24 +24,25 @@ function FlightSearch() {
   ];
 
   const handleSearch = () => {
-    if (!from || !to || !date || (tripType === "roundtrip" && !returnDate)) {
-      alert("Please fill all fields");
-      return;
-    }
-
     const filtered = flights.filter(
       (f) =>
         f.from.toLowerCase() === from.toLowerCase() &&
         f.to.toLowerCase() === to.toLowerCase()
     );
-
     setResults(filtered);
     setSearched(true);
   };
 
+  const filteredFrom = CITIES.filter((c) =>
+    c.toLowerCase().includes(from.toLowerCase())
+  );
+  const filteredTo = CITIES.filter((c) =>
+    c.toLowerCase().includes(to.toLowerCase())
+  );
+
   return (
     <div>
-      <h1>Flight Search App</h1>
+      <h1>Flight Booking App</h1>
 
       <label>
         <input
@@ -61,23 +66,65 @@ function FlightSearch() {
 
       <br /><br />
 
+      {/* Source City with dropdown */}
       <input
         type="text"
         placeholder="Source City"
         value={from}
-        onChange={(e) => setFrom(e.target.value)}
+        onChange={(e) => {
+          setFrom(e.target.value);
+          setShowFromList(true);
+        }}
+        onFocus={() => setShowFromList(true)}
       />
+      {showFromList && (
+        <ul>
+          {filteredFrom.map((city) => (
+            <li
+              key={city}
+              onClick={() => {
+                setFrom(city);
+                setShowFromList(false);
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              {city}
+            </li>
+          ))}
+        </ul>
+      )}
 
-      <br /><br />
+      <br />
 
+      {/* Destination City with dropdown */}
       <input
         type="text"
         placeholder="Destination City"
         value={to}
-        onChange={(e) => setTo(e.target.value)}
+        onChange={(e) => {
+          setTo(e.target.value);
+          setShowToList(true);
+        }}
+        onFocus={() => setShowToList(true)}
       />
+      {showToList && (
+        <ul>
+          {filteredTo.map((city) => (
+            <li
+              key={city}
+              onClick={() => {
+                setTo(city);
+                setShowToList(false);
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              {city}
+            </li>
+          ))}
+        </ul>
+      )}
 
-      <br /><br />
+      <br />
 
       <input
         type="date"
@@ -102,6 +149,7 @@ function FlightSearch() {
 
       <br /><br />
 
+      {/* Results */}
       <ul>
         {searched && results.length === 0 && (
           <li>No flights available</li>
