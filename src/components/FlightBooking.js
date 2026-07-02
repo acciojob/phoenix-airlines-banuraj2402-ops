@@ -24,6 +24,7 @@ function FlightBooking() {
       return;
     }
 
+    setErrors([]);
     navigate("/confirmation", {
       state: { firstName, lastName, email, phone, flight }
     });
